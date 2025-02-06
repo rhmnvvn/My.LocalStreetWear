@@ -78,6 +78,7 @@
             margin: 0 auto;
             min-height: 500px; /* Ensures grid height remains stable when filtering */
             transition: min-height 0.3s ease-in-out;
+            min-height: 60vh;
         }
 
 
@@ -300,7 +301,7 @@
     const productCards = document.querySelectorAll('.product');
     const productGrid = document.getElementById("productGrid");
 
-    productGrid.style.minHeight = "500px";  // Keeps height stable when filtering
+    productGrid.style.minHeight = "60vh";   // Keeps height stable when filtering
 
     productCards.forEach(card => {
         if (category === 'all' || card.getAttribute("data-category") === category) {
@@ -317,14 +318,9 @@
     // Prevents sudden scrollbar disappearance causing the website to move
     document.body.style.overflowY = "scroll";
 }
-
-
- </script>
+</script>
         
-        
-        
-
-
+    
 <script src="localStorage.js"></script>
 </body>
 </html>
