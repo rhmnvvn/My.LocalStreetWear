@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         .sidebar {
-            position: fixed; /* Ensures sidebar stays in place */
+            position: absolute; /* Ensures sidebar stays in place */
             top: 70px;
             left: 0;
             width: 220px;
@@ -236,7 +236,7 @@
     </footer>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+       document.addEventListener("DOMContentLoaded", function () {
             let products = JSON.parse(localStorage.getItem("products")) || [];
             const productGrid = document.getElementById("productGrid");
         
@@ -267,32 +267,30 @@
             });
         });
 
-            document.addEventListener("DOMContentLoaded", function () {
-                const sidebar = document.querySelector(".sidebar");
-            
-                if (!sidebar) return;
-            
-                function saveSidebarState() {
-                    localStorage.setItem("sidebarHTML", sidebar.innerHTML);
+        document.addEventListener("DOMContentLoaded", function () {
+            const sidebar = document.querySelector(".sidebar");
+            if (!sidebar) return;
+
+            function saveSidebarState() {
+                localStorage.setItem("sidebarHTML", sidebar.innerHTML);
+            }
+
+            function loadSidebarState() {
+                const savedSidebar = localStorage.getItem("sidebarHTML");
+                if (savedSidebar) {
+                    sidebar.innerHTML = savedSidebar;
+                    attachEventListeners();
                 }
-            
-                function loadSidebarState() {
-                    const savedSidebar = localStorage.getItem("sidebarHTML");
-                    if (savedSidebar) {
-                        sidebar.innerHTML = savedSidebar;
-                    }
-                }
-            
-                loadSidebarState();
-            
+            }
+
+            function attachEventListeners() {
                 document.querySelectorAll(".sidebar button").forEach(button => {
                     button.addEventListener("click", function () {
-                        filterCategory(this.getAttribute("onclick").split("'")[1]);
+                        filterCategory(this.getAttribute("onclick").split("'")[1]); 
                         saveSidebarState();
                     });
                 });
-            });
-
+            }
 
             loadSidebarState();
             attachEventListeners();
@@ -320,17 +318,8 @@
     document.body.style.overflowY = "scroll";
 }
 
-
-            
+</script>
         
-
-
-        </script>
-        
-        
-        
-
-
 <script src="localStorage.js"></script>
 </body>
 </html>
