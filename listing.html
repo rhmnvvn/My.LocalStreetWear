@@ -11,7 +11,7 @@
             top: 70px;
             left: 0;
             width: 220px;
-            height: 0 auto;
+            height: 600px !important;
             background-color: #1c1c1c;
             color: white;
             padding: 20px;
@@ -19,8 +19,8 @@
             flex-direction: column;
             box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
             overflow-y: auto;
+            min-height: 105vh; /* Ensures grid height remains even after filtering */
             
-            height: 600px !important;
 
         }
 
@@ -302,7 +302,7 @@
     const productCards = document.querySelectorAll('.product');
     const productGrid = document.getElementById("productGrid");
 
-    productGrid.style.minHeight = "60vh";   // Keeps height stable when filtering
+    
 
     productCards.forEach(card => {
         if (category === 'all' || card.getAttribute("data-category") === category) {
