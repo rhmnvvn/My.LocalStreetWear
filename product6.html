@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY.LocalStreetWear</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+   .product-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 40px;
+        background-color: #f9f9f9;
+    }
+    .product-container img {
+        width: 400px;
+        height: auto;
+        border-radius: 10px;
+    }
+    .product-details {
+        text-align: center;
+        margin-top: 20px;
+    }
+    .product-details h1 {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+    .product-details p {
+        font-size: 18px;
+        color: #555;
+    }
+   .size-options, .quantity-selector {
+        margin-top: 10px;
+     }
+    .size-options label, .quantity-selector label {
+        font-weight: bold;
+    }
+    .size-options select, .quantity-selector input {
+        margin-left: 10px;
+        padding: 5px;
+    }
+    .add-to-cart {
+        background-color: #222;
+        color: white;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-top: 15px;
+    }
+     .add-to-cart:hover {
+        background-color: #505050;
+    }
+    .reviews {
+        margin-top: 30px;
+        width: 60%;
+        text-align: left;
+        margin-left: 10px;
+        }
+    .review {
+        background-color: #fff;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+     }
+    .review strong {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+
+    .review-form {
+        margin-top: 20px;
+        display: none;
+    }
+    .review-form input, .review-form textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .review-form button {
+        background-color: #222;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-bottom: 10px;
+        
+        
+    
+        }
+
+    .review-form button:hover {
+        background-color: #505050;
+        margin-left: 10px;
+        }
+</style>
+
+<body>
+    
+<script src="localStorage.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const isLoggedIn = localStorage.getItem("isLoggedIn");
+        const currentUser = JSON.parse(localStorage.getItem("currentUser"));;
+        const reviewForm = document.querySelector(".review-form");
+        const reviewerName = document.getElementById("reviewer-name");
+        
+    if (isLoggedIn === "true" && currentUser) {
+         reviewForm.style.display = "block";
+        reviewerName.value = currentUser.name; // Extract only the name
+        reviewerName.readOnly = true;
+    }
+    });
+    
+    function addReview() {
+        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        if (!currentUser) {
+            alert("You need to be logged in to leave a review.");
+            return;
+        }
+        
+        var name = currentUser.name;
+        var comment = document.getElementById("review-comment").value;
+        if (name && comment) {
+            var reviewSection = document.getElementById("reviews-list");
+            var newReview = document.createElement("div");
+            newReview.classList.add("review");
+            newReview.innerHTML = `<strong>${name}</strong><p>${comment}</p>`;
+            reviewSection.appendChild(newReview);
+            document.getElementById("review-comment").value = "";
+        }
+    }
+</script>
+    <header>
+        <div class="logo">
+            <img src="images/logolocal.svg" alt="Logo">
+            <p>MY.LocalStreetWear</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html"><img src="images/house-line-svgrepo-com.svg" alt="Home Vector">Home</a></li>
+                <li><a href="listing.html"><img src="images/list-svgrepo-com.svg" alt="Category Vector">Categories</a></li>
+                <li><a href="about.html"><img src="images/clipboard-list-alt-svgrepo-com.svg" alt="About Vector">About</a></li>
+                <li><a href="contactus.html"><img src="images/mobile-alt-2-svgrepo-com.svg" alt="Contact Vector">Contact</a></li>
+                <li><a href="cart.html"><img src="images/cart-shopping-svgrepo-com.svg" alt="Cart Vector">Cart</a></li>
+                <li id="profileLink"><a href="profile.html"><img src="images/user-svgrepo-com.svg" alt="Profile Vector">Profile</a></li>
+                <li id="signUpLink"><a href="signup.html">Sign Up</a></li>
+                <li id="signInLink"><a href="signin.html">Sign In</a></li>
+               
+            </ul>
+        </nav>
+    </header>
+
+    
+    <div class="product-container">
+        <img src="https://media.karousell.com/media/photos/products/2023/12/23/levis_501_big_e_selvedge_baggy_1703313249_0e7212d5_progressive.jpg" alt="Jeans 3">
+        <div class="product-details">
+            <h1>Levi's 501 Baggy</h1>
+            <p>RM140</p>
+            <p>They're designed to look great on anyone, thanks to their versatile, straight fit and effortlessly cool silhouette.</p>
+            
+            <div class="size-options">
+                <label for="size">Select Size:</label>
+                <select id="size">
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                    <option value="XXL">XXL</option>
+                </select>
+            </div>
+            
+            <div class="quantity-selector">
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" min="1" value="1">
+            </div>
+            
+            <button class="add-to-cart" data-id="6" data-name="Levi's 501 Baggy" data-price="140">Add to Cart</button>
+        </div>
+    </div>
+
+    <div class="reviews">
+        <h2>Customer Reviews</h2>
+        <div id="reviews-list">
+            <div class="review">
+                <strong>Racky</strong>
+                <p>Suitable for wearing in all conditions! Love the quality </p>
+            </div>
+            <div class="review">
+                <strong>Mary Beth</strong>
+                <p>Great value for money. The style is exactly what I was looking for.</p>
+            </div>
+            <div class="review">
+                <strong>Mark</strong>
+                <p>Very comfortable and stylish. Fast shipping too!</p>
+            </div>
+        </div>
+        <div class="review-form">
+            <h3>Add Your Review</h3>
+            <input type="text" id="reviewer-name" placeholder="Your Name" readonly>
+            <textarea id="review-comment" placeholder="Write your review here..."></textarea>
+            <button onclick="addReview()">Submit Review</button>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const addToCartButton = document.querySelector(".add-to-cart");
+        
+            addToCartButton.addEventListener("click", function () {
+                const productId = this.getAttribute("data-id");
+                const productName = this.getAttribute("data-name");
+                const productPrice = parseFloat(this.getAttribute("data-price"));
+                const productImage = document.querySelector(".product-container img").src;
+                const productSize = document.getElementById("size").value;
+                const productQuantity = parseInt(document.getElementById("quantity").value);
+        
+                addToCart(productId, productName, productPrice, productImage, productSize, productQuantity);
+            });
+        });
+        
+        function addToCart(id, name, price, image, size, quantity) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        
+            let existingItem = cart.find(item => item.id === id && item.size === size);
+        
+            if (existingItem) {
+                existingItem.quantity += quantity;  
+            } else {
+                cart.push({
+                    id: id,
+                    name: name,
+                    price: price,
+                    size: size,
+                    quantity: quantity,
+                    image: image
+                });
+            }
+        
+            localStorage.setItem("cart", JSON.stringify(cart));
+        
+            alert(`${name} (Size: ${size}) added to cart!`);
+        }
+        </script>
+        
+    <script src="cart.js"></script>
+    <script src="product.js"></script>
+
+    <footer>
+        <p>&copy; 2025 My.LocalStreetWear. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

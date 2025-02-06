@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY.LocalStreetWear</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+     body, .contact-form h1, .contact-form p, .location h2, .location p, .socials h2 {
+            font-family: Helvetica;
+        }
+    .contact-form {
+            text-align: center;
+            padding: 40px;
+            
+        }
+        .contact-form form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 400px;
+            margin: auto;
+        }
+       
+        .contact-form input, .contact-form textarea, .contact-form button {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .contact-form button {
+            background-color: #000;
+            color: #fff;
+            cursor: pointer;
+        }
+        .location {
+            text-align: center;
+            padding: 40px;
+        }
+        .location iframe {
+            border: 1px solid #ddd;
+        }
+        .socials {
+            text-align: center;
+            padding: 40px;
+        }
+        .socials a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #555;
+        }
+        .socials a:hover {
+            color: #000;
+        }
+    
+        .socials a img {
+            width: 32px;
+            height: 32px;
+        }
+
+</style>
+
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/logolocal.svg" alt="Logo">
+            <p>MY.LocalStreetWear</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html"><img src="images/house-line-svgrepo-com.svg" alt="Home Vector">Home</a></li>
+                <li><a href="listing.html"><img src="images/list-svgrepo-com.svg" alt="Category Vector">Categories</a></li>
+                <li><a href="about.html"><img src="images/clipboard-list-alt-svgrepo-com.svg" alt="about vector">About</a></li>
+                <li><a href="contactus.html"><img src="images/mobile-alt-2-svgrepo-com.svg" alt="Contact Vector">Contact</a></li>
+                <li><a href="cart.html"><img src="images/cart-shopping-svgrepo-com.svg" alt="Cart Vector">Cart</a></li>
+                <li id="profileLink"><a href="profile.html"> <img src="images/user-svgrepo-com.svg" alt="Guest Vector"> Profile </a></li>
+                <li id="signUpLink"><a href="signup.html"> Sign Up </a></li>
+                <li id="signInLink"><a href="signin.html"> Sign In </a></li>
+                <script src="localStorage.js"></script>
+            </ul>
+        </nav>
+    </header>
+   
+
+    <main>
+        <section class="contact-form">
+            <h1>GET IN TOUCH</h1>
+            <p>Let's Answer Your Queries</p>
+            <form>
+                <input type="text" name="first_name" placeholder="First Name" required>
+                <input type="text" name="last_name" placeholder="Last Name" required>
+                <input type="email" name="email" placeholder="E-mail" required>
+                <textarea name="message" placeholder="Leave a message for us" required></textarea>
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+
+        <section class="location">
+            <h2>Come Visit Us</h2>
+            <p>B-02, 03, Persiaran Multimedia, Cyber 10, 63000 Cyberjaya, Selangor</p>
+            <iframe 
+                width="100%" 
+                height="400" 
+                src="https://www.google.com/maps?q=B-02,+03,+Persiaran+Multimedia,+Cyber+10,+63000+Cyberjaya,+Selangor&output=embed"
+                allowfullscreen>
+            </iframe>
+        </section>
+
+        <section class="socials">
+            <h2>Follow Our Socials</h2>
+            <a href="https://www.instagram.com" target="_blank"><img src="images/instagram-svgrepo-com.svg" alt="IG"></a>
+            <a href="https://www.twitter.com" target="_blank"><img src="images/x-social-media-black-icon.svg" alt ="Twitter"></a>
+            <a href="https://www.facebook.com" target="_blank"><img src="images/facebook-svgrepo-com.svg" alt = "Facebook"></a>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 My.LocalStreetWear. All rights reserved.</p>
+    </footer>
+</body>
+</html>

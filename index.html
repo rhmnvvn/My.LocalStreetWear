@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY.LocalStreetWear</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      
+        .hero {
+            text-align: center;
+            padding:80px 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+    
+        .hero button {
+            background-color: #000;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        .hero button:hover {
+            background-color: #555;
+            transform: scale(1.05);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+    
+        .hero .text {
+            text-align: center;
+            max-width: 60%;
+            margin: 0 auto;
+        }
+        .hero .text h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .hero .text p {
+            margin-bottom: 20px;
+            font-size: 1.2em;
+        }
+        .hero .text button {
+            background-color: #000;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        .hero .text button:hover {
+            background-color: #555;
+            transform: scale(1.05);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        .hero .text button:active{
+            background-color: grey;
+        }
+
+        .hero img {
+            max-width: 40%;
+            height: auto;
+            margin-left: 30px;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 20px; 
+            padding: 30px;
+            background-color: #f4f4f4;
+            text-align: center; 
+}
+        .features div {
+            display: flex;
+            flex-direction: column; /* Aligns heading and text vertically */
+            justify-content: center; /* Centers content vertically in each cell */
+            align-items: center; /* Centers content horizontally in each cell */
+        
+        }
+        .products {
+            text-align: center;
+            padding: 20px;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .product {
+            border: 2px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .products {
+            text-align: center;
+            padding: 20px;
+        }
+        .products h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            justify-items: center;
+        }
+        .product {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden; /* Ensures content stays within the card */
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 15px; /* Ensure there’s space for the text */
+            text-align: center;
+            min-height: 300px; /* Sets a minimum height for all cards to avoid cutting */
+            display: flex;
+            flex-direction: column; /* Align content vertically */
+            justify-content: space-between; /* Ensures proper spacing between image and text */
+
+    /* Flexbox for layout consistency */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 320px; /* Adjust to balance image and text */
+        }
+        .product:hover {
+            transform: scale(1.02); /* Slight zoom effect on hover */
+             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Enhance shadow on hover */
+        }
+        .product img {
+            border-radius: 10px;
+             max-width: 100%;
+            max-height: 160px; /* Sets a limit without forcing cropping */
+            object-fit: contain; /* Fits the image entirely within the space */
+            display: block;
+            margin: 0 auto;/
+        }
+        .product p {
+            margin: 10px 0;
+            font-family: 'Helvetica', serif;
+            font-size: 1.1em;
+            font-weight: 500;
+            color: #333;
+            word-wrap: break-word; /* Prevents long words from overflowing */
+            text-align: center;
+
+    /* Handle overflow for long text */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .subscribe:hover{
+            background-color: black;
+            color: white;
+        }
+
+        .subscribe:active{
+            color: white;
+            background-color: grey;
+        }
+
+        .product-link {
+            display: block; /* Make the anchor tag behave like a block element */
+            text-decoration: none; /* Remove underline */
+            color: inherit; /* Inherit text color */
+
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/logolocal.svg" alt="Logo">
+            <p>MY.LocalStreetWear</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html"><img src="images/house-line-svgrepo-com.svg" alt="Home Vector">Home</a></li>
+                <li><a href="listing.html"><img src="images/list-svgrepo-com.svg" alt="Category Vector">Categories</a></li>
+                <li><a href="about.html"><img src="images/clipboard-list-alt-svgrepo-com.svg" alt="about vector">About</a></li>
+                <li><a href="contactus.html"><img src="images/mobile-alt-2-svgrepo-com.svg" alt="Contact Vector">Contact</a></li>
+                <li><a href="cart.html"><img src="images/cart-shopping-svgrepo-com.svg" alt="Cart Vector">Cart</a></li>
+                <li id="profileLink"><a href="profile.html"> <img src="images/user-svgrepo-com.svg" alt="Guest Vector"> Profile </a></li>
+                <li id="signUpLink"><a href="signup.html"> Sign Up </a></li>
+                <li id="signInLink"><a href="signin.html"> Sign In </a></li>
+                
+                
+            </ul>
+        </nav>
+    </header>
+    <script src="localStorage.js"></script>
+
+    <section class="hero">
+    <div class="text">
+        <h1>Fresh Arrivals Online</h1>
+        <p>Discover Our Newest Collections Today</p>
+        <a href="listing.html">
+        <button>View Collection</button>
+        </a>
+    </div>
+    <img src="images/modelmain.png" alt="models">
+    </section>
+
+    <section class="features">
+        <div>
+            <h3>Free Shipping</h3>
+            <p>Enjoy free shipping on all orders.</p>
+        </div>
+        <div>
+            <h3>Satisfaction Guarantee</h3>
+            <p>We prioritize your satisfaction with our products.</p>
+        </div>
+        <div>
+            <h3>Secure Payment</h3>
+            <p>Shop safely with our secure payment options.</p>
+        </div>
+    </section>
+
+    <section class="products">
+        <h2>Best Selling</h2>
+        <a href="product1.html"class="product-link">
+        <div class="product-grid">
+            <div class="product">
+                <img src="images/southpole_jeans.png" alt="Jeans 1">
+                <p><strong>Southpole JNCO style Jeans</strong></p>
+                <p>RM125</p>
+            </div>
+        </a>
+        <a href="product2.html" class="product-link">
+            <div class="product">
+                <img src="images/Carhartt-Wip-Og-Detroit-jacket-Black.png" alt="Shirt 1">
+                <p><strong>Carhartt WIP Black Detroit Jacket</strong> </p>
+                <p>RM320</p>
+            </div>
+        </a>
+            <a href="product3.html" class="product-link">
+            <div class="product">
+                <img src="images/my-11134207-7r992-lmn2vbko9cyb52-removebg.png" alt="Shirt 2">
+                <p><strong>SVG X SUPER SUNDAY 2023</strong></p>
+                <p>RM200</p>
+            </div>
+        </a>
+            <a href="product4.html" class="product-link">
+            <div class="product">
+                <img src="images/s-l1200-removebg-preview.png" alt="Jeans 2">
+                <p><strong>Vintage 90s JNCO Tribals Red</strong></p>
+                <p>RM350</p>
+            </div>
+        </a>
+        </div>
+    </section>
+
+    <section class="newsletter">
+        <h2>Join Our Newsletter</h2>
+        <p>Be the first to receive updates and special gifts.</p>
+        <input type="email" placeholder="example@gmail.com">
+        <button class="subscribe" onclick="myFunction()">Subscribe</button>
+    <script>
+        function myFunction(){
+        alert("You are my big fan!");
+        };
+    </script>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 My.LocalStreetWear. All rights reserved.</p>
+    </footer>
+</body>
+</html>

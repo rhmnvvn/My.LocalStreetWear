@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | Profile</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .profile-container {
+            max-width: 400px;
+            margin: 40px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .profile-container img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 5px;
+            border: 3px solid #222;
+        }
+
+        .profile-container h2 {
+            margin-bottom: 5px;
+            font-size: 22px;
+        }
+
+        .profile-container p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .profile-container button {
+            background: black;
+            color: white;
+            padding: 10px;
+            margin-top: 15px;
+            border: none;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .profile-container button:hover {
+            background: #444;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="images/logolocal.svg" alt="Logo">
+        <p>Admin | MY.LocalStreetWear</p>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="admindashboard.html"><img src="images/dashboard-4-svgrepo-com.svg" alt="Dashboard Icon">Dashboard</a></li>
+            <li><a href="adminproduct.html"><img src="images/product-svgrepo-com.svg" alt="Products">Products</a></li>
+            <li><a href="admincustomer.html"><img src="images/customers-svgrepo-com.svg" alt="Customer Icon">Customer</a></li>
+            <li><a href="adminmanageorder.html"><img src="images/order-svgrepo-com.svg" alt="Orders Icon">Orders</a></li>
+            <li><a href="profileadmin.html"><img src="images/admin-svgrepo-com.svg" alt="Profile Icon">Profile</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <div class="profile-container">
+        <img src="images/logolocal.svg" alt="Admin Profile">
+        <h2>Admin</h2>
+        <p>admin@my.localstreetwear.com</p>
+
+        <button id="signOut">Sign Out</button>
+    </div>
+</main>
+
+<script>
+    document.getElementById("signOut").addEventListener("click", function () {
+        alert("You have signed out!");
+        window.location.href = "signin.html"; // Redirect to sign-in page
+    });
+
+    // Load admin profile (Ensures data remains)
+    document.addEventListener("DOMContentLoaded", function () {
+        const adminProfile = JSON.parse(localStorage.getItem("adminProfile")) || {
+            name: "Admin",
+            email: "admin@my.localstreetwear.com",
+            image: "images/admin_profile.png"
+        };
+
+        document.getElementById("adminName").textContent = adminProfile.name;
+        document.getElementById("adminEmail").textContent = adminProfile.email;
+        document.querySelector(".profile-container img").src = adminProfile.image;
+    });
+</script>
+
+<footer>
+    <p>&copy; 2025 My.LocalStreetWear. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

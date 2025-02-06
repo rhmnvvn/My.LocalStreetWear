@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | Manage Products</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .admin-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding-left: 20px;
+            margin-top: 20px;
+        }
+        .product {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            text-align: center;
+            padding-bottom: 10px;
+        }
+        .product:hover {
+            transform: translateY(-5px);
+        }
+        .product img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+        }
+        .product-details {
+            padding: 15px;
+        }
+        .product-details p {
+            margin: 10px 0;
+        }
+        .product-details p strong {
+            font-size: 12px;
+        }
+        .product-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .delete-btn {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .delete-btn:hover {
+            background-color: darkred;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+        form input, form button {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        form button {
+            background-color: black;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        form button:hover {
+            background-color: gray;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">
+        <img src="images/logolocal.svg" alt="Logo">
+        <p>Admin | MY.LocalStreetWear</p>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="admindashboard.html"><img src="images/dashboard-4-svgrepo-com.svg" alt="Dashboard Icon">Dashboard</a></li>
+            <li><a href="adminproduct.html"><img src="images/product-svgrepo-com.svg" alt="Products Icon">Products</a></li>
+            <li><a href="admincustomer.html"><img src="images/customers-svgrepo-com.svg" alt="Customer Icon">Customer</a></li>
+            <li><a href="adminmanageorder.html"><img src="images/order-svgrepo-com.svg" alt="Orders Icon">Orders</a></li>
+            <li><a href="profileadmin.html"><img src="images/admin-svgrepo-com.svg" alt="Profile Icon">Profile</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="admin-container">
+    <h2>Manage Products</h2>
+
+    <h3>Existing Products</h3>
+    <div class="product-grid" id="productGrid">
+        <!-- Hardcoded products -->
+        <a href="product1.html" class="product-link">
+            <div class="product" data-category="pants">
+                <img src="images/southpole_jeans.png" alt="Jeans 1">
+                <div class="product-details">
+                    <p><strong>Southpole JNCO style Jeans</strong></p>
+                    <p>RM125</p>
+                </div>
+            </div>
+        </a>
+        <a href="product2.html" class="product-link">
+            <div class="product" data-category="shirt">
+                <img src="images/Carhartt-Wip-Og-Detroit-jacket-Black.png" alt="Shirt 1">
+                <div class="product-details">
+                    <p><strong>Carhartt WIP Black Detroit Jacket</strong></p>
+                    <p>RM320</p>
+                </div>
+            </div>
+        </a><a href="product3.html"class="product-link">
+                <div class="product" data-category="shirt">
+                    <img src="images/my-11134207-7r992-lmn2vbko9cyb52-removebg.png" alt="Shirt 2">
+                    <div class="product-details">
+                        <p><strong>SVG X SUPER SUNDAY 2023</strong></p>
+                        <p>RM200</p>
+                        
+                    </div>
+                </div>
+            </a>
+                <a href="product4.html"class="product-link">
+                <div class="product" data-category="pants">
+                    <img src="images/s-l1200-removebg-preview.png" alt="Jeans 2">
+                    <div class="product-details">
+                        <p><strong>Vintage 90s JNCO Tribals Red</strong></p>
+                        <p>RM350</p>
+                    </div>
+                </div>
+            </a>
+            <a href="product5.html"class="product-link">
+                <div class="product" data-category="shirt">
+                    
+                    <img src="https://cdn.store-assets.com/s/1286701/i/77126136.jpeg?width=1024&format=webp" alt="Shirt 3">
+                    <div class="product-details">
+                        <p><strong>KRTKL Oversize Tee</strong></p>
+                        <p>RM75</p>
+                    </div>
+                </div>
+            </a>
+            <a href="product6.html"class="product-link">
+                <div class="product" data-category="pants">
+                    <img src="https://media.karousell.com/media/photos/products/2023/12/23/levis_501_big_e_selvedge_baggy_1703313249_0e7212d5_progressive.jpg" alt="Jeans 3">
+                    <div class="product-details">
+                        <p><strong>Levi's 501 Baggy</strong></p>
+                        <p>RM140</p>
+                       
+                    </div>
+                </div>
+            </a>
+    </div>
+
+    <h3>Newly Added Products</h3>
+    <div class="product-grid" id="newProductGrid"></div>
+
+    <h3>Add a New Product</h3>
+    <form id="addProductForm">
+        <input type="text" id="productTitle" placeholder="Product Name" required>
+        <input type="number" id="productPrice" placeholder="Price" required>
+        <input type="text" id="productCategory" placeholder="Category (e.g., pants, shirt)" required>
+        <input type="text" id="productImage" placeholder="Image URL" required>
+        <button type="submit">Add Product</button>
+    </form>
+</main>
+
+<footer>
+    <p>&copy; 2025 My.LocalStreetWear. All rights reserved.</p>
+</footer>
+
+<script>
+// Load products from localStorage
+document.addEventListener("DOMContentLoaded", function () {
+    let products = JSON.parse(localStorage.getItem("products")) || [];
+    const newProductGrid = document.getElementById("newProductGrid");
+
+    function loadProducts() {
+        newProductGrid.innerHTML = "";
+        products.forEach((product, index) => {
+            let productDiv = document.createElement("div");
+            productDiv.classList.add("product");
+            productDiv.setAttribute("data-category", product.category);
+            productDiv.innerHTML = `
+                <a href="product_template.html?id=${product.id}" class="product-link">
+                    <img src="${product.image}" alt="${product.title}">
+                    <div class="product-details">
+                        <p><strong>${product.title}</strong></p>
+                        <p>RM${product.price}</p>
+                        <button class="delete-btn" onclick="deleteProduct(${index})">Delete</button>
+                    </div>
+                </a>
+            `;
+            newProductGrid.appendChild(productDiv);
+        });
+    }
+
+    loadProducts();
+
+    // Handle adding a new product
+    document.getElementById("addProductForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+        
+        let newProduct = {
+            id: products.length + 1,
+            title: document.getElementById("productTitle").value,
+            price: document.getElementById("productPrice").value,
+            category: document.getElementById("productCategory").value,
+            image: document.getElementById("productImage").value
+        };
+
+        products.push(newProduct);
+        localStorage.setItem("products", JSON.stringify(products));
+        alert("Product added successfully!");
+        loadProducts();
+    });
+
+    // Handle product deletion
+    window.deleteProduct = function (index) {
+        products.splice(index, 1);
+        localStorage.setItem("products", JSON.stringify(products));
+        loadProducts();
+    };
+});
+</script>
+
+</body>
+</html>

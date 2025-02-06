@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> MY.LocalStreetWear</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+     .role-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .role-tabs button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            background-color: black;
+            color: white;
+        }
+        .role-tabs button.active {
+            background-color: #007BFF;
+            color: #fff;
+        }
+        .role-tabs button.admin-tab {
+            background-color: #28a745;
+            color: #fff;
+        }
+        .role-tabs button.admin-tab.active {
+            background-color: #1e7e34;
+        }
+</style>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <img src="images/logolocal.svg" alt="Logo">
+            <p>MY.LocalStreetWear</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html"><img src="images/house-line-svgrepo-com.svg" alt="Home Icon">Home</a></li>
+                <li><a href="listing.html"><img src="images/list-svgrepo-com.svg" alt="Categories Icon">Categories</a></li>
+                <li><a href="about.html"><img src="images/clipboard-list-alt-svgrepo-com.svg" alt="About Icon">About</a></li>
+                <li><a href="contactus.html"><img src="images/mobile-alt-2-svgrepo-com.svg" alt="Contact Icon">Contact</a></li>
+                <li><a href="cart.html"><img src="images/cart-shopping-svgrepo-com.svg" alt="Cart Icon">Cart</a></li>
+                <li id="profileLink"><a href="profile.html"> <img src="images/user-svgrepo-com.svg" alt="Guest Vector"> Profile </a></li>
+                <li id="signUpLink"><a href="signup.html"> Sign Up </a></li>
+                <li id="signInLink"><a href="signin.html"> Sign In </a></li>
+                
+            </ul>
+        </nav>
+    </header>
+
+
+      <!-- Role Selection Buttons -->
+      <div class="role-tabs">
+        <button class="user-btn" onclick="window.location.href='signin.html'"> User</button>
+        <button class="admin-btn" onclick="window.location.href='signinadmin.html'"> Admin</button>
+    </div>
+
+    <!-- Sign-In Form Section -->
+    <main style="max-width: 500px; width: 90%; margin: 50px auto; padding: 30px; border: 1px solid #ddd; border-radius: 10px; background: #fff; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+
+        <h1 style="text-align: center; font-size: 2rem;">Login</h1>
+        <p style="text-align: center; margin-bottom: 20px; color: #555;">MY.LocalStreetWear > Login</p>
+
+        <form id="loginForm">
+            <!-- Google Sign-In Button -->
+            <div style="text-align: center; margin-bottom: 20px;">
+                <button style="display: inline-flex; align-items: center; gap: 10px; padding: 10px 20px; border: 1px solid #ddd; border-radius: 5px; background-color: #fff; cursor: pointer;">
+                    <img src="images/google-icon.svg" alt="Google Icon" style="width: 20px;">
+                    Continue with Google
+                </button>
+            </div>
+
+            <div style="text-align: center; margin-bottom: 20px; font-size: 0.9rem; color: #aaa;">OR</div>
+
+            <!-- Email and Password Fields -->
+            <div style="margin-bottom: 15px;">
+                <label for="email" style="display: block; margin-bottom: 5px; font-weight: bold;">Email</label>
+                <input type="email" required id="email" name="email" placeholder="Enter your email" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label for="password" style="display: block; margin-bottom: 5px; font-weight: bold;">Password</label>
+                <input type="password" required id="password" name="password" placeholder="Enter your password" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+            <div style="text-align: right; margin-bottom: 20px;">
+                <a href="#" style="color: #007BFF; text-decoration: none; font-size: 0.9rem;">Forgot Password?</a>
+            </div>
+
+            <!-- Login Button -->
+            <button type="submit" style="width: 100%; padding: 10px; background-color: #000; color: #fff; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer;">
+                Login
+            </button>
+        </form>
+        <script src="localStorage.js"></script>
+        <script>
+
+document.addEventListener("DOMContentLoaded", function () {
+    const signInForm = document.getElementById("loginForm");
+
+    if (signInForm) {
+        signInForm.addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent the form from submitting
+
+            // Retrieve input values
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            if (email.toLowerCase() === "admin@mylocalstreetwear.com") {
+                alert("This email is reserved for the admin, if you're an admin, please press the admin button.");
+                return; // Stop further execution
+            }
+
+            // Retrieve users from localStorage
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+            let customers = JSON.parse(localStorage.getItem("customers")) || []; // Fetch saved customer data
+
+            // Find a user with matching email and password
+            let authenticatedUser = users.find(user => user.email === email && user.password === password);
+
+            if (authenticatedUser) {
+                // Check if the user exists in customers and retrieve the saved address and orders
+                let savedUser = customers.find(customer => customer.email === email);
+                if (savedUser) {
+                    authenticatedUser.address = savedUser.address || {}; // Restore address
+                    authenticatedUser.orders = savedUser.orders || []; // Restore orders
+                }
+
+                // Save login details
+                localStorage.setItem("isLoggedIn", "true");
+                localStorage.setItem("currentUser", JSON.stringify(authenticatedUser));
+
+                alert("Login successful!");
+                window.location.href = "profile.html"; // Redirect to profile page
+            } else {
+                alert("Invalid email or password. Please try again.");
+            }
+        });
+    }
+});
+
+
+            </script>
+            
+        
+
+        <div style="text-align: center; margin-top: 20px; font-size: 0.9rem;">
+            Don’t have an account? <a href="signup.html" style="color: #007BFF; text-decoration: none;">Sign up</a>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2025 My.LocalStreetWear. All rights reserved.</p>
+    </footer>
+</body>
+</html>

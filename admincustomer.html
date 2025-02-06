@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Admin | MY.LocalStreetWear</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Table Headers */
+thead {
+    background-color: #222; /* Dark theme */
+    color: #fff;
+    text-align: left;
+    font-weight: bold;
+}
+
+/* Table Header Row */
+thead th {
+    padding: 12px;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+/* Table Rows */
+tbody tr {
+    border-bottom: 1px solid #ddd;
+    transition: background-color 0.3s ease;
+}
+
+/* Table Data Cells */
+tbody td {
+    padding: 12px;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Alternate Row Colors */
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Hover Effect on Rows */
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Center Text in Columns */
+td, th {
+    text-align: left;
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+    table {
+        font-size: 12px;
+    }
+    thead th, tbody td {
+        padding: 8px;
+    }
+}
+
+
+
+
+</style>
+   
+<body>
+
+
+<header>
+        <div class="logo">
+            <img src="images/logolocal.svg" alt="Logo">
+            <p>Admin | MY.LocalStreetWear</p>
+        </div>
+        <nav>
+            <ul>
+                <!-- pls use svg for icon or vectors -->
+                <li><a href="admindashboard.html"><img src="images/dashboard-4-svgrepo-com.svg" alt="Dashboard Icon">Dashboard</a></li>
+                <li><a href="adminproduct.html"><img src="images/product-svgrepo-com.svg" alt="Customer Icon">Products</a></li> 
+                <li><a href="admincustomer.html"><img src="images/customers-svgrepo-com.svg" alt="About Icon">Customer</a></li>
+                <li><a href="adminmanageorder.html"><img src="images/order-svgrepo-com.svg" alt="Orders Icon">Orders</a></li>
+                <li><a href="profileadmin.html"><img src="images/admin-svgrepo-com.svg" alt="Profile Icon">Profile</a></li>
+        </nav>
+    </header>
+    <main>
+        <h2>Customer Address List</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Street</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>ZIP Code</th>
+                    <th>Phone</th>
+                </tr>
+            </thead>
+            <tbody id="customerList"></tbody>
+        </table>
+    </main>
+    <script src="localStorage2.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const customers = getAllCustomers();
+    console.log("Admin Customers Data:", customers); // Debugging
+    const customerList = document.getElementById("customerList");
+
+    if (customers.length === 0) {
+        customerList.innerHTML = "<tr><td colspan='7'>No customers found.</td></tr>";
+        return;
+    }
+
+    customers.forEach(customer => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${customer.address?.fullName || "N/A"}</td>
+            <td>${customer.email || "N/A"}</td>
+            <td>${customer.address?.street || "N/A"}</td>
+            <td>${customer.address?.city || "N/A"}</td>
+            <td>${customer.address?.state || "N/A"}</td>
+            <td>${customer.address?.zip || "N/A"}</td>
+            <td>${customer.address?.phone || "N/A"}</td>
+        `;
+        customerList.appendChild(row);
+    });
+});
+</script>
+
+    <footer>
+        <p>&copy; 2025 My.LocalStreetWear. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
+

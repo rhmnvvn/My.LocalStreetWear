@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY.LocalStreetWear</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+
+
+
+        .signup-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .signup-container h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .signup-container p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .signup-form {
+            width: 100%;
+            max-width: 400px;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .signup-form .google-login {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .signup-form .divider {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .signup-form .divider::before,
+        .signup-form .divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #ddd;
+        }
+
+        .signup-form .form-group {
+            margin-bottom: 15px;
+        }
+
+        .signup-form .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        .signup-form .form-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        .signup-form .terms {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .signup-form button {
+            width: 100%;
+            background: #000;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .signup-form button:hover {
+            background: #333;
+        }
+
+        .signup-form .login-link {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+
+        .signup-form .login-link a {
+            color: #000;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .signup-form .login-link a:hover {
+            text-decoration: underline;
+        }
+        
+    </style>
+</head>
+
+
+
+
+<body>
+<script src="localStorage.js"></script>
+
+    <header>
+        <div class="logo">
+            <img src="images/logolocal.svg" alt="Logo">
+            <p>MY.LocalStreetWear</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html"><img src="images/house-line-svgrepo-com.svg" alt="Home Vector">Home</a></li>
+                <li><a href="listing.html"><img src="images/list-svgrepo-com.svg" alt="Category Vector">Categories</a></li>
+                <li><a href="about.html"><img src="images/clipboard-list-alt-svgrepo-com.svg" alt="about vector">About</a></li>
+                <li><a href="contactus.html"><img src="images/mobile-alt-2-svgrepo-com.svg" alt="Contact Vector">Contact</a></li>
+                <li><a href="cart.html"><img src="images/cart-shopping-svgrepo-com.svg" alt="Cart Vector">Cart</a></li>
+                <li id="profileLink"><a href="profile.html"> <img src="images/user-svgrepo-com.svg" alt="Guest Vector"> Profile </a></li>
+                <li id="signUpLink"><a href="signup.html"> Sign Up </a></li>
+                <li id="signInLink"><a href="signin.html"> Sign In </a></li>
+
+                
+                
+                
+            </ul>
+        </nav>
+    </header>
+
+    <main class="signup-container">
+        <h1>Sign up</h1>
+        <p>My.LocalStreetWear > Sign up</p>
+        <form id="signupForm" class = "signup-form">
+            <div class="google-login">
+                <img src="images/google-icon.svg" alt="Google Logo" width="20">
+                Continue with Google
+            </div>
+            <div class="divider">OR</div>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" required id="name" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" required id="email" placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" required id="password" placeholder="Enter your password">
+            </div>
+            <p class="terms">
+                By creating an account, you agree with our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+            </p>
+            <button type="submit">Create account</button>
+            <p class="login-link">Already have an account? <a href="signin.html">Log in</a></p>
+        </form>
+
+        
+        <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const signUpForm = document.getElementById("signupForm");
+
+    if (signUpForm) {
+        signUpForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            // Get input values
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value.trim().toLowerCase();
+            const password = document.getElementById("password").value;
+
+            // Prevent admin email from being registered
+            if (email === "admin@mylocalstreetwear.com") {
+                alert("This email is reserved for the admin. Use the admin login.");
+                return;
+            }
+
+            // Retrieve existing users
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+            let customers = JSON.parse(localStorage.getItem("customers")) || [];
+
+            // Check if email is already registered
+            const userExists = users.some(user => user.email === email);
+            const customerExists = customers.some(customer => customer.email === email);
+
+            if (userExists || customerExists) {
+                alert("Email already registered. Please use another email.");
+                return;
+            }
+
+            // Save new user to "users" array (for login)
+            const newUser = { name, email, password };
+            users.push(newUser);
+            localStorage.setItem("users", JSON.stringify(users));
+
+            // Save new user to "customers" array (for admin tracking)
+            const newCustomer = { name, email, address: {} }; // Empty address field
+            customers.push(newCustomer);
+            localStorage.setItem("customers", JSON.stringify(customers));
+
+            alert("Sign up successful!");
+            window.location.href = "signin.html";
+        });
+    }
+});
+</script>
+
+        
+            
+        
+    </main>
+    <footer>
+        <p>&copy; 2025 My.LocalStreetWear. All rights reserved.</p>
+    </footer>
+</body>
