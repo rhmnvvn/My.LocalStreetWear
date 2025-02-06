@@ -7,11 +7,12 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         .sidebar {
-            position: absolute;
+            position: fixed; /* Ensures sidebar stays in place */
             top: 70px;
             left: 0;
             width: 220px;
-            height: 600px !important;
+            height: auto; /* Instead of fixed height */
+            min-height: 100vh; /* Prevents extra space */
             background-color: #1c1c1c;
             color: white;
             padding: 20px;
@@ -19,11 +20,7 @@
             flex-direction: column;
             box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
             overflow-y: auto;
-            min-height: 105vh; /* Ensures grid height remains even after filtering */
-            
-
         }
-
 
         .sidebar h2 {
             font-size: 18px;
@@ -269,30 +266,32 @@
             });
         });
 
-        document.addEventListener("DOMContentLoaded", function () {
-            const sidebar = document.querySelector(".sidebar");
-            if (!sidebar) return;
-
-            function saveSidebarState() {
-                localStorage.setItem("sidebarHTML", sidebar.innerHTML);
-            }
-
-            function loadSidebarState() {
-                const savedSidebar = localStorage.getItem("sidebarHTML");
-                if (savedSidebar) {
-                    sidebar.innerHTML = savedSidebar;
-                    attachEventListeners();
+            document.addEventListener("DOMContentLoaded", function () {
+                const sidebar = document.querySelector(".sidebar");
+            
+                if (!sidebar) return;
+            
+                function saveSidebarState() {
+                    localStorage.setItem("sidebarHTML", sidebar.innerHTML);
                 }
-            }
-
-            function attachEventListeners() {
+            
+                function loadSidebarState() {
+                    const savedSidebar = localStorage.getItem("sidebarHTML");
+                    if (savedSidebar) {
+                        sidebar.innerHTML = savedSidebar;
+                    }
+                }
+            
+                loadSidebarState();
+            
                 document.querySelectorAll(".sidebar button").forEach(button => {
                     button.addEventListener("click", function () {
-                        filterCategory(this.getAttribute("onclick").split("'")[1]); 
+                        filterCategory(this.getAttribute("onclick").split("'")[1]);
                         saveSidebarState();
                     });
                 });
-            }
+            });
+
 
             loadSidebarState();
             attachEventListeners();
