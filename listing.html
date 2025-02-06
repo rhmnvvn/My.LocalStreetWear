@@ -6,20 +6,23 @@
     <title>MY.LocalStreetWear</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Sidebar styles */
         .sidebar {
-            position: absolute; /* Keeps the sidebar in place during scrolling */
-            top: 80px; /* Pushes it below the header */
+            position: absolute;
+            top: 70px;
             left: 0;
             width: 220px;
-            background-color: #222;
+            height: 0 auto;
+            background-color: #1c1c1c;
             color: white;
             padding: 20px;
-            height: 105%; /* Ensures it covers the rest of the viewport */
             display: flex;
             flex-direction: column;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+            overflow-y: auto;
+            min-height: 104.5vh; /* Ensures grid height remains even after filtering */
+
         }
+
 
         .sidebar h2 {
             font-size: 18px;
@@ -53,7 +56,7 @@
             padding: 20px;
             background-color: #f9f9f9; /* Subtle background for better contrast */
             min-height: 100vh;
-            
+          
         }
     
         .main-content h1 {
@@ -64,13 +67,19 @@
     
         /* Product grid styles */
         .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Auto-arrange columns */
+            display: flex;
+            flex-wrap: wrap;
             gap: 20px;
-            justify-content: center; /* Centers products properly */
-            align-items: stretch; /* Ensures all products are aligned */
+            justify-content: center;
+            align-items: flex-start;
             padding: 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: 500px; /* Ensures grid height remains stable when filtering */
+            transition: min-height 0.3s ease-in-out;
         }
+
 
         .product {
             background-color: white;
@@ -257,27 +266,60 @@
                 productGrid.appendChild(productDiv);
             });
         });
-        
-        // **Category Filtering Function**
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const sidebar = document.querySelector(".sidebar");
+            if (!sidebar) return;
+
+            function saveSidebarState() {
+                localStorage.setItem("sidebarHTML", sidebar.innerHTML);
+            }
+
+            function loadSidebarState() {
+                const savedSidebar = localStorage.getItem("sidebarHTML");
+                if (savedSidebar) {
+                    sidebar.innerHTML = savedSidebar;
+                    attachEventListeners();
+                }
+            }
+
+            function attachEventListeners() {
+                document.querySelectorAll(".sidebar button").forEach(button => {
+                    button.addEventListener("click", function () {
+                        filterCategory(this.getAttribute("onclick").split("'")[1]); 
+                        saveSidebarState();
+                    });
+                });
+            }
+
+            loadSidebarState();
+            attachEventListeners();
+        });
+
         function filterCategory(category) {
     const productCards = document.querySelectorAll('.product');
+    const productGrid = document.getElementById("productGrid");
+
+    productGrid.style.minHeight = "500px";  // Keeps height stable when filtering
 
     productCards.forEach(card => {
         if (category === 'all' || card.getAttribute("data-category") === category) {
-            card.style.display = "flex";  
+            card.style.display = "flex";
+            card.style.opacity = "1";  
+            card.style.position = "relative";
         } else {
             card.style.display = "none"; 
+            card.style.opacity = "0";
+            card.style.position = "absolute";
         }
     });
 
-    // Recalculate grid layout to remove empty spaces
-    const productGrid = document.getElementById("productGrid");
-    productGrid.style.display = "flex"; 
-    productGrid.style.flexWrap = "wrap"; 
-    productGrid.style.justifyContent = "center";
+    // Prevents sudden scrollbar disappearance causing the website to move
+    document.body.style.overflowY = "scroll";
 }
 
-        </script>
+
+ </script>
         
         
         
