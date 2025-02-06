@@ -7,12 +7,11 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         .sidebar {
-            position: absolute; /* Ensures sidebar stays in place */
+            position: absolute;
             top: 70px;
             left: 0;
             width: 220px;
-            height: auto; /* Instead of fixed height */
-            min-height: 110vh; /* Prevents extra space */
+            height: 600px !important;
             background-color: #1c1c1c;
             color: white;
             padding: 20px;
@@ -20,7 +19,11 @@
             flex-direction: column;
             box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
             overflow-y: auto;
+            min-height: 105vh; /* Ensures grid height remains even after filtering */
+            
+
         }
+
 
         .sidebar h2 {
             font-size: 18px;
@@ -54,6 +57,7 @@
             padding: 20px;
             background-color: #f9f9f9; /* Subtle background for better contrast */
             min-height: 100vh;
+            flex-grow: 1;
           
         }
     
@@ -61,7 +65,6 @@
             font-size: 24px;
             margin-bottom: 15px;
             padding-left:20px;
-            flex-grow: 1;
         }
     
         /* Product grid styles */
@@ -236,7 +239,7 @@
     </footer>
 
     <script>
-       document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function () {
             let products = JSON.parse(localStorage.getItem("products")) || [];
             const productGrid = document.getElementById("productGrid");
         
@@ -317,9 +320,12 @@
     // Prevents sudden scrollbar disappearance causing the website to move
     document.body.style.overflowY = "scroll";
 }
-
 </script>
         
+        
+        
+
+
 <script src="localStorage.js"></script>
 </body>
 </html>
